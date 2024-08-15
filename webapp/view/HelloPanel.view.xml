@@ -1,35 +1,89 @@
 <mvc:View
-	controllerName="ui5.walkthrough.controller.HelloPanel"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
+    controllerName="ui5.walkthrough.controller.HelloPanel"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
 >
-	<Panel
-		headerText="{i18n>helloPanelTitle}"
-		class="sapUiResponsiveMargin"
-		width="auto"
-	>
-		<content>
-			<Button
-				id="helloDialogButton"
-				icon="sap-icon://world"
-				text="{i18n>openDialogButtonText}"
-				press=".onOpenDialog"
-				class="sapUiSmallMarginEnd"
-			/>
-			<Button
-				text="{i18n>showHelloButtonText}"
-				press=".onShowHello"
-				class="myCustomButton"
-			/>
-			<Input
-				value="{/recipient/name}"
-				valueLiveUpdate="true"
-				width="60%"
-			/>
-			<FormattedText
-				htmlText="Hello {/recipient/name}"
-				class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"
-			/>
-		</content>
-	</Panel>
+    <Panel
+                        headerText="{i18n>helloPanelTitle}"
+                        class="sapUiResponsiveMargin"
+                        width="auto"
+                        expandable="{device>/system/phone}"
+                        expanded="{= !${device>/system/phone} }"
+                    >
+                        <content>
+                            <Button 
+                                id="helloDialogButton"
+                                icon="sap-icon://world"
+                                text="{i18n>openDialogButtonText}"
+                                press=".onOpenDialog"
+                                class="sapUiSmallMarginEnd sapUiVisibleOnlyOnDesktop"
+                            />
+                            <Button 
+                                text="{i18n>showHelloButtonText}"
+                                press=".onShowHello"
+                                class="myCustomButton"/>
+                            <Input
+                                value="{/recipient/name}"
+                                valueLiveUpdate="true"
+                                width="60%" 
+                                />
+                            <FormattedText
+                                htmlText="Hello {/recipient/name}"
+                                class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText" />
+                        </content>
+                    </Panel>
 </mvc:View>
+
+
+
+
+<!-- <mvc:View
+    controllerName="ui5.walkthrough.controller.HelloPanel" <!-- 이 View와 연결된 컨트롤러의 이름을 정의합니다. -->
+    xmlns="sap.m" <!-- SAPUI5의 모바일 컨트롤을 사용할 수 있도록 설정합니다. -->
+    xmlns:mvc="sap.ui.core.mvc" <!-- MVC의 기본 컨트롤 및 기능을 사용할 수 있도록 설정합니다. -->
+>
+    <!-- Panel 컨트롤은 내용을 그룹화하는 데 사용됩니다. -->
+    <Panel
+        headerText="{i18n>helloPanelTitle}" <!-- 패널의 헤더 텍스트를 'i18n' 모델에서 'helloPanelTitle' 속성으로 설정합니다. -->
+        class="sapUiResponsiveMargin" <!-- 패널에 반응형 여백을 적용합니다. -->
+        width="auto" <!-- 패널의 너비를 자동으로 설정합니다. -->
+        expandable="{device>/system/phone}" <!-- 장치가 전화기일 경우 패널을 확장 가능하도록 설정합니다. -->
+        expanded="{= !${device>/system/phone} }" <!-- 장치가 전화기일 경우 패널이 기본적으로 축소된 상태로 설정됩니다. -->
+    >
+        <!-- Panel의 콘텐츠를 정의합니다. -->
+        <content>
+            <!-- Button 컨트롤은 사용자가 클릭할 수 있는 버튼을 표시합니다. -->
+            <Button 
+                id="helloDialogButton" <!-- 버튼의 고유 ID를 설정합니다. -->
+                icon="sap-icon://world" <!-- 버튼에 'world' 아이콘을 설정합니다. -->
+                text="{i18n>openDialogButtonText}" <!-- 버튼의 텍스트를 'i18n' 모델에서 'openDialogButtonText' 속성으로 설정합니다. -->
+                press=".onOpenDialog" <!-- 버튼 클릭 시 호출될 핸들러 메서드를 'onOpenDialog'로 설정합니다. -->
+                class="sapUiSmallMarginEnd sapUiVisibleOnlyOnDesktop" <!-- 버튼에 작은 여백을 추가하고, 데스크톱에서만 표시되도록 설정합니다. -->
+            />
+            <!-- 또 다른 Button 컨트롤을 정의합니다. -->
+            <Button 
+                text="{i18n>showHelloButtonText}" <!-- 버튼의 텍스트를 'i18n' 모델에서 'showHelloButtonText' 속성으로 설정합니다. -->
+                press=".onShowHello" <!-- 버튼 클릭 시 호출될 핸들러 메서드를 'onShowHello'로 설정합니다. -->
+                class="myCustomButton"/> <!-- 'myCustomButton' CSS 클래스를 적용하여 버튼의 스타일을 정의합니다. -->
+            
+            <!-- Input 컨트롤은 사용자가 텍스트를 입력할 수 있는 필드를 제공합니다. -->
+            <Input
+                value="{/recipient/name}" <!-- 입력 필드의 값은 모델의 '/recipient/name' 경로에 바인딩됩니다. -->
+                valueLiveUpdate="true" <!-- 값이 실시간으로 업데이트되도록 설정합니다. -->
+                width="60%" <!-- 입력 필드의 너비를 60%로 설정합니다. -->
+            />
+            <!-- FormattedText 컨트롤은 HTML 형식을 지원하는 텍스트를 표시합니다. -->
+            <FormattedText
+                htmlText="Hello {/recipient/name}" <!-- HTML 텍스트를 설정하여 'recipient/name' 값이 포함된 인사말을 표시합니다. -->
+                class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText" /> <!-- 'sapUiSmallMargin'과 'myCustomText' CSS 클래스를 적용하여 스타일을 정의합니다. -->
+        </content>
+    </Panel>
+</mvc:View>
+
+
+주석의 의미:
+<mvc:View>: 이 태그는 SAPUI5의 MVC 구조에서 뷰를 정의합니다. controllerName 속성은 이 뷰와 연결된 컨트롤러를 지정합니다.
+<Panel>: UI 구성 요소를 그룹화하고, 헤더와 콘텐츠를 포함하는 컨테이너입니다. 다양한 속성으로 패널의 동작과 표시를 제어할 수 있습니다.
+<Button>: 버튼 UI 요소를 정의합니다. 버튼 클릭 시 특정 동작을 트리거하는 press 이벤트 핸들러를 설정합니다.
+<Input>: 사용자로부터 텍스트 입력을 받을 수 있는 필드입니다. 바인딩된 값은 모델의 특정 경로에 따라 업데이트됩니다.
+<FormattedText>: HTML 텍스트를 지원하여 다양한 서식을 적용할 수 있는 텍스트 표시 컨트롤입니다. -->

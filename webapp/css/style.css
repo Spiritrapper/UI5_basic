@@ -1,21 +1,30 @@
 html[dir="ltr"] .myAppDemoWT .myCustomButton.sapMBtn {
-	margin-right: 0.125rem
+    margin-right: 0.125rem; /* 왼쪽에서 오른쪽으로 읽는 방향(LTR)일 때, .myCustomButton 요소의 오른쪽 여백을 0.125rem로 설정합니다. */
 }
 
 html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
-	margin-left: 0.125rem
+    margin-left: 0.125rem; /* 오른쪽에서 왼쪽으로 읽는 방향(RTL)일 때, .myCustomButton 요소의 왼쪽 여백을 0.125rem로 설정합니다. */
 }
 
 .myAppDemoWT .myCustomText {
-	display: inline-block;
-	font-weight: bold;
+    display: inline-block; /* .myCustomText 요소를 inline-block으로 설정하여, 요소가 인라인 블록으로 표시되고, 너비와 높이를 설정할 수 있게 합니다. */
+    font-weight: bold; /* .myCustomText 요소의 텍스트를 굵게(bold) 표시합니다. */
 }
 
-/*	ProductRating */
+/* ProductRating */
 .myAppDemoWTProductRating {
-	padding: 0.75rem;
+    padding: 0.75rem; /* .myAppDemoWTProductRating 요소의 내측 여백(padding)을 0.75rem으로 설정합니다. */
 }
 
 .myAppDemoWTProductRating .sapMRI {
-	vertical-align: initial;
+    vertical-align: initial; /* .sapMRI 요소의 수직 정렬을 초기값으로 설정하여, 부모 요소와의 수직 정렬을 기본값으로 돌아가게 합니다. */
 }
+
+
+/* 요약
+html[dir="ltr"] .myAppDemoWT .myCustomButton.sapMBtn: 왼쪽에서 오른쪽으로 읽는(LTR) 방향일 때 .myCustomButton 클래스의 버튼에 오른쪽 여백을 설정합니다.
+html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn: 오른쪽에서 왼쪽으로 읽는(RTL) 방향일 때 .myCustomButton 클래스의 버튼에 왼쪽 여백을 설정합니다.
+.myAppDemoWT .myCustomText: .myCustomText 클래스의 텍스트를 인라인 블록으로 설정하고, 굵게 표시합니다.
+.myAppDemoWTProductRating: ProductRating 요소에 패딩을 설정합니다.
+.myAppDemoWTProductRating .sapMRI: sapMRI 클래스의 요소에 기본 수직 정렬을 설정합니다.v */
+

@@ -1,58 +1,205 @@
 <mvc:View
-	controllerName="ui5.walkthrough.controller.InvoiceList"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
->
-	<List
-		id="invoiceList"
-		headerText="{i18n>invoiceListTitle}"
-		class="sapUiResponsiveMargin"
-		width="auto"
-		items="{
-			path : 'invoice>/Invoices',
-			sorter : {
-				path : 'ShipperName',
-				group : true
-			}
-		}"
-	>
-		<headerToolbar>
-			<Toolbar>
-				<Title text="{i18n>invoiceListTitle}" />
-				<ToolbarSpacer />
-				<SearchField
-					width="50%"
-					search=".onFilterInvoices"
-				/>
-			</Toolbar>
-		</headerToolbar>
-		<items>
-			<ObjectListItem
-				title="{invoice>Quantity} x {invoice>ProductName}"
-				number="{
-					parts: [
-						'invoice>ExtendedPrice',
-						'view>/currency'
-					],
-					type: 'sap.ui.model.type.Currency',
-					formatOptions: {
-						showMeasure: false
-					}
-				}"
-				numberUnit="{view>/currency}"
-				numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
-				type="Navigation"
-				press=".onPress"
-			>
-				<firstStatus>
-					<ObjectStatus
-						text="{
-							path: 'invoice>Status',
-							formatter: '.formatter.statusText'
-						}"
-					/>
-				</firstStatus>
-			</ObjectListItem>
-		</items>
-	</List>
+   controllerName="ui5.walkthrough.controller.InvoiceList"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+   <Table
+      id="invoiceList"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{
+         path : 'invoice>/Invoices',
+         sorter : {
+            path : 'ShipperName',
+            group : true
+         }
+         }" >
+      <headerToolbar>
+         <Toolbar >
+            <Title text="{i18n>invoiceListTitle}"/>
+            <ToolbarSpacer/>
+            <SearchField 
+               width="50%"
+               search=".onFilterInvoices"
+            />
+         </Toolbar>
+      </headerToolbar>
+      <columns>
+			<Column
+				hAlign="End"
+				minScreenWidth="Small"
+				demandPopin="true"
+				width="5em">
+				<Text text="{i18n>columnQuantity}" />
+			</Column>
+			<Column>
+				<Text text="{i18n>columnName}" />
+			</Column>
+			<Column
+				minScreenWidth="Small"
+				demandPopin="true">
+				<Text text="{i18n>columnStatus}" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="{i18n>columnSupplier}" />
+			</Column>
+			<Column hAlign="End">
+				<Text text="{i18n>columnPrice}" />
+			</Column>
+		</columns>
+      <items>
+         <ColumnListItem 
+            type="Navigation"
+            press=".onPress"
+         >
+            <cells>
+               <ObjectNumber 
+                  number="{invoice>Quantity}"
+                  emphasized="false"
+                  />
+               <ObjectIdentifier title="{invoice>ProductName}"/>
+               <Text 
+                  text="{ 
+                     parts: [
+                        'invoice>status',
+                        'i18n>invoiceStatusA',
+                        'i18n>invoiceStatusB',
+                        'i18n>invoiceStatusC'
+                     ],
+                     formatter: '.formatter.statusText'
+                   }"
+               />
+               <Text text="{invoice>ShipperName}"/>
+               <ObjectNumber
+                  number="{ 
+                     parts: [
+                        'invoice>ExtendedPrice',
+                        'view>/currency'
+                     ],
+                     type: 'sap.ui.model.type.Currency',
+                     formatOptions: {
+                        showMeasure: false
+                     }
+                   }"
+                   unit="{view>/currency}"
+                   state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success'}"
+               />
+            </cells>
+         </ColumnListItem>
+      </items>
+   </Table>
 </mvc:View>
+
+<!-- <mvc:View
+   controllerName="ui5.walkthrough.controller.InvoiceList" <!-- 이 View와 연결된 컨트롤러의 이름을 정의합니다. -->
+   xmlns="sap.m" <!-- SAPUI5의 모바일 컨트롤을 사용할 수 있도록 설정합니다. -->
+   xmlns:mvc="sap.ui.core.mvc"> <!-- MVC의 기본 컨트롤 및 기능을 사용할 수 있도록 설정합니다. -->
+   
+   <!-- Table 컨트롤은 데이터의 리스트를 테이블 형식으로 표시합니다. -->
+   <Table
+      id="invoiceList" <!-- 테이블의 고유 ID를 설정합니다. -->
+      class="sapUiResponsiveMargin" <!-- 테이블에 반응형 여백을 추가합니다. -->
+      width="auto" <!-- 테이블의 너비를 자동으로 설정합니다. -->
+      items="{
+         path : 'invoice>/Invoices', <!-- 테이블의 데이터를 바인딩할 모델의 경로를 설정합니다. -->
+         sorter : {
+            path : 'ShipperName', <!-- 데이터를 정렬할 기준을 설정합니다. -->
+            group : true <!-- 그룹화 옵션을 활성화하여 데이터를 그룹으로 나눕니다. -->
+         }
+      }" >
+      
+      <!-- Table의 헤더에 툴바를 추가하여 추가적인 UI 요소를 배치할 수 있습니다. -->
+      <headerToolbar>
+         <Toolbar>
+            <Title text="{i18n>invoiceListTitle}"/> <!-- 툴바의 타이틀을 'i18n' 모델에서 'invoiceListTitle' 속성으로 설정합니다. -->
+            <ToolbarSpacer/> <!-- 툴바의 요소들 사이에 여백을 추가합니다. -->
+            <SearchField 
+               width="50%" <!-- 검색 필드의 너비를 50%로 설정합니다. -->
+               search=".onFilterInvoices" <!-- 검색 이벤트가 발생할 때 호출될 핸들러 메서드를 'onFilterInvoices'로 설정합니다. -->
+            />
+         </Toolbar>
+      </headerToolbar>
+      
+      <!-- Table의 컬럼을 정의합니다. -->
+      <columns>
+         <Column
+            hAlign="End" <!-- 컬럼의 텍스트 정렬을 오른쪽으로 설정합니다. -->
+            minScreenWidth="Small" <!-- 최소 화면 너비가 Small일 때 컬럼을 표시합니다. -->
+            demandPopin="true" <!-- 화면이 좁아질 때 컬럼을 팝인으로 전환합니다. -->
+            width="5em"> <!-- 컬럼의 너비를 5em으로 설정합니다. -->
+            <Text text="{i18n>columnQuantity}" /> <!-- 컬럼 헤더 텍스트를 'i18n' 모델에서 'columnQuantity' 속성으로 설정합니다. -->
+         </Column>
+         <Column>
+            <Text text="{i18n>columnName}" /> <!-- 컬럼 헤더 텍스트를 'i18n' 모델에서 'columnName' 속성으로 설정합니다. -->
+         </Column>
+         <Column
+            minScreenWidth="Small" <!-- 최소 화면 너비가 Small일 때 컬럼을 표시합니다. -->
+            demandPopin="true"> <!-- 화면이 좁아질 때 컬럼을 팝인으로 전환합니다. -->
+            <Text text="{i18n>columnStatus}" /> <!-- 컬럼 헤더 텍스트를 'i18n' 모델에서 'columnStatus' 속성으로 설정합니다. -->
+         </Column>
+         <Column
+            minScreenWidth="Tablet" <!-- 최소 화면 너비가 Tablet일 때 컬럼을 표시합니다. -->
+            demandPopin="false"> <!-- 화면이 좁아질 때 컬럼을 팝인으로 전환하지 않습니다. -->
+            <Text text="{i18n>columnSupplier}" /> <!-- 컬럼 헤더 텍스트를 'i18n' 모델에서 'columnSupplier' 속성으로 설정합니다. -->
+         </Column>
+         <Column hAlign="End"> <!-- 컬럼의 텍스트 정렬을 오른쪽으로 설정합니다. -->
+            <Text text="{i18n>columnPrice}" /> <!-- 컬럼 헤더 텍스트를 'i18n' 모델에서 'columnPrice' 속성으로 설정합니다. -->
+         </Column>
+      </columns>
+      
+      <!-- Table의 데이터 항목을 정의합니다. -->
+      <items>
+         <ColumnListItem 
+            type="Navigation" <!-- 항목의 타입을 'Navigation'으로 설정하여 클릭 시 내비게이션 동작을 지원합니다. -->
+            press=".onPress" <!-- 항목 클릭 시 호출될 핸들러 메서드를 'onPress'로 설정합니다. -->
+         >
+            <cells>
+               <!-- ColumnListItem의 셀을 정의합니다. -->
+               <ObjectNumber 
+                  number="{invoice>Quantity}" <!-- 셀의 숫자를 모델의 'Quantity' 속성으로 설정합니다. -->
+                  emphasized="false" <!-- 강조 표시를 비활성화합니다. -->
+               />
+               <ObjectIdentifier title="{invoice>ProductName}"/> <!-- 셀의 타이틀을 모델의 'ProductName' 속성으로 설정합니다. -->
+               <Text 
+                  text="{ 
+                     parts: [
+                        'invoice>status', <!-- 상태 값을 모델에서 가져옵니다. -->
+                        'i18n>invoiceStatusA', <!-- 상태 A의 텍스트를 'i18n' 모델에서 가져옵니다. -->
+                        'i18n>invoiceStatusB', <!-- 상태 B의 텍스트를 'i18n' 모델에서 가져옵니다. -->
+                        'i18n>invoiceStatusC' <!-- 상태 C의 텍스트를 'i18n' 모델에서 가져옵니다. -->
+                     ],
+                     formatter: '.formatter.statusText' <!-- 상태 값을 포맷팅하여 표시합니다. -->
+                  }"
+               />
+               <Text text="{invoice>ShipperName}"/> <!-- 셀의 텍스트를 모델의 'ShipperName' 속성으로 설정합니다. -->
+               <ObjectNumber
+                  number="{ 
+                     parts: [
+                        'invoice>ExtendedPrice', <!-- 가격 값을 모델에서 가져옵니다. -->
+                        'view>/currency' <!-- 통화 값을 뷰 모델에서 가져옵니다. -->
+                     ],
+                     type: 'sap.ui.model.type.Currency', <!-- 숫자 타입을 통화로 설정합니다. -->
+                     formatOptions: {
+                        showMeasure: false <!-- 측정 단위를 표시하지 않습니다. -->
+                     }
+                  }"
+                  unit="{view>/currency}" <!-- 통화 단위를 설정합니다. -->
+                  state="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success'}" <!-- 가격 값이 50보다 크면 'Error' 상태로 설정하고, 그렇지 않으면 'Success' 상태로 설정합니다. -->
+               />
+            </cells>
+         </ColumnListItem>
+      </items>
+   </Table>
+</mvc:View>
+
+주석의 의미:
+<mvc:View>: SAPUI5의 MVC 구조에서 뷰를 정의합니다. controllerName 속성은 이 뷰와 연결된 컨트롤러를 지정합니다.
+<Table>: 테이블 컨트롤로 데이터를 행과 열로 표시합니다. items 속성으로 데이터 바인딩을 설정하고, headerToolbar로 툴바를 추가할 수 있습니다.
+<Column>: 테이블의 열을 정의합니다. 각 열에 대한 헤더 텍스트, 정렬, 최소 화면 너비 등의 속성을 설정합니다.
+<ColumnListItem>: 테이블의 각 항목을 정의합니다. type="Navigation" 속성은 항목 클릭 시 내비게이션 동작을 지원하도록 설정합니다.
+<ObjectNumber>: 숫자를 표시하는 컨트롤입니다. 통화 또는 수량 같은 데이터를 표현하는 데 사용됩니다.
+<ObjectIdentifier>: 항목의 제목을 표시합니다.
+<Text>: 일반 텍스트를 표시합니다. text 속성에 바인딩된 데이터와 포맷터를 통해 동적으로 값을 표시할 수 있습니다.
+<SearchField>: 검색 필드를 제공하며, 사용자가 입력한 검색 쿼리로 필터링할 수 있습니다.
+<Toolbar>: 테이블의 헤더에 버튼이나 다른 UI 요소를 추가할 수 있는 컨테이너입니다. -->

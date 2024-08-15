@@ -10,5 +10,8 @@
   "devDependencies": {
     "@ui5/cli": "^3",
     "ui5-middleware-simpleproxy": "^3"
+  },
+  "dependencies": {
+    "ui5.walkthrough": "file:"
   }
 }

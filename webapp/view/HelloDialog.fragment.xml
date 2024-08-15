@@ -1,23 +1,73 @@
 <core:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:core="sap.ui.core"
->
-	<Dialog
-		id="helloDialog"
-		title="Hello {/recipient/name}"
-	>
-		<content>
-			<core:Icon
-				src="sap-icon://hello-world"
-				size="8rem"
-				class="sapUiMediumMargin"
-			/>
-		</content>
-		<beginButton>
-			<Button
-				text="{i18n>dialogCloseButtonText}"
-				press=".onCloseDialog"
-			/>
-		</beginButton>
-	</Dialog>
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog 
+        id="helloDialog"
+        title="Hello {/recipient/name}"
+    >
+        <content>
+            <core:Icon
+                src="sap-icon://hello-world"
+                size="8rem"
+                class="sapUiMediumMargin"
+            />
+        </content>
+        <beginButton>
+            <Button 
+                text="{i18n>dialogCloseButtonText}"
+                press=".onCloseDialog"
+            />
+        </beginButton>
+    </Dialog>
 </core:FragmentDefinition>
+
+
+<!-- <core:FragmentDefinition
+    xmlns="sap.m" <!-- 'sap.m' 네임스페이스를 사용하여 SAPUI5의 모바일 컨트롤을 사용할 수 있게 합니다. -->
+    xmlns:core="sap.ui.core"> <!-- 'core' 네임스페이스를 사용하여 SAPUI5의 기본 컨트롤 및 기능을 사용할 수 있게 합니다. -->
+    
+    <!-- Dialog 컨트롤은 사용자에게 모달 대화 상자를 표시합니다. -->
+    <Dialog 
+        id="helloDialog" <!-- 대화 상자의 ID를 'helloDialog'로 설정합니다. -->
+        title="Hello {/recipient/name}"> <!-- 대화 상자의 제목을 'recipient' 모델의 'name' 속성으로 설정합니다. -->
+        
+        <!-- Dialog의 내용 부분입니다. -->
+        <content>
+            <!-- Icon 컨트롤은 SAP Fiori 아이콘을 표시합니다. -->
+            <core:Icon
+                src="sap-icon://hello-world" <!-- 'hello-world' 아이콘을 사용합니다. -->
+                size="8rem" <!-- 아이콘의 크기를 8rem으로 설정합니다. -->
+                class="sapUiMediumMargin" <!-- SAPUI5의 표준 CSS 클래스를 사용하여 아이콘에 중간 여백을 추가합니다. -->
+            />
+        </content>
+        
+        <!-- Dialog의 시작 부분에 버튼을 추가합니다. -->
+        <beginButton>
+            <!-- Button 컨트롤은 사용자가 클릭할 수 있는 버튼을 표시합니다. -->
+            <Button 
+                text="{i18n>dialogCloseButtonText}" <!-- 버튼의 텍스트를 'i18n' 모델에서 'dialogCloseButtonText' 속성으로 설정합니다. -->
+                press=".onCloseDialog" <!-- 버튼 클릭 시 호출될 핸들러 메서드를 'onCloseDialog'로 설정합니다. -->
+            />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition> -->
+
+주석의 의미:
+<core:FragmentDefinition>: SAPUI5에서 프래그먼트는 재사용 가능한 UI 조각을 정의합니다. FragmentDefinition 태그는 프래그먼트의 시작을 나타냅니다. xmlns와 xmlns:core 속성은 XML 네임스페이스를 설정하여 SAPUI5 컨트롤을 사용 가능하게 합니다.
+
+<Dialog>: 모달 대화 상자를 정의하는 컨트롤입니다. 사용자가 다른 작업을 수행하기 전에 이 대화 상자와 상호작용해야 합니다.
+
+id="helloDialog": 대화 상자의 고유 ID입니다.
+title="Hello {/recipient/name}": 대화 상자의 제목을 데이터 바인딩을 통해 'recipient' 모델의 'name' 속성으로 설정합니다.
+<content>: 대화 상자 내부의 내용을 정의합니다.
+
+<core:Icon>: 아이콘을 표시하는 컨트롤입니다.
+src="sap-icon://hello-world": 'hello-world' 아이콘을 지정합니다.
+size="8rem": 아이콘의 크기를 8rem으로 설정합니다.
+class="sapUiMediumMargin": 아이콘에 중간 여백을 추가하는 CSS 클래스를 적용합니다.
+<beginButton>: 대화 상자의 하단에 위치할 버튼을 정의합니다. 주로 대화 상자를 닫거나 작업을 완료하는 용도로 사용됩니다.
+
+<Button>: 버튼 컨트롤입니다.
+text="{i18n>dialogCloseButtonText}": 버튼의 텍스트를 'i18n' 모델의 'dialogCloseButtonText' 속성으로 설정합니다.
+press=".onCloseDialog": 버튼 클릭 시 호출될 핸들러 메서드를 'onCloseDialog'로 설정합니다.
+이 XML Fragment는 간단한 대화 상자를 정의하고 있으며, 대화 상자에는 아이콘과 닫기 버튼이 포함되어 있습니다.

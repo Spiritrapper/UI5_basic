@@ -1,23 +1,63 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>UI5 Walkthrough</title>
-	<script
-		id="sap-ui-bootstrap"
-		src="resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_horizon"
-		data-sap-ui-libs="sap.m"
-		data-sap-ui-compatVersion="edge"
-		data-sap-ui-async="true"
-		data-sap-ui-onInit="module:sap/ui/core/ComponentSupport"
-		data-sap-ui-resourceroots='{
-			"ui5.walkthrough": "./"
-		}'>
-
-	</script>
-</head>
-<body class="sapUiBody" id="content">
-	<div data-sap-ui-component data-name="ui5.walkthrough" data-id="container" data-settings='{"id" : "walkthrough"}'></div>
-</body>
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <!-- 문서의 문자 인코딩을 UTF-8로 설정합니다. -->
+        <title>UI5 Walkthrough</title> 
+        <!-- 브라우저 탭에 표시될 문서의 제목을 설정합니다. -->
+        <script
+            id="sap-ui-bootstrap"
+            src="resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-libs="sap.m"
+            data-sap-ui-compat-version="edge"
+            data-sap-ui-async="true"
+            data-sap-ui-on-init="module:sap/ui/core/ComponentSupport"
+            data-sap-ui-resource-roots='{
+                "ui5.walkthrough": "./"
+            }'>
+            <!-- SAPUI5의 핵심 스크립트를 로드하고, 다양한 설정을 제공합니다. -->
+        </script>
+    </head> 
+    <body class="sapUiBody" id="content"> 
+        <!-- 페이지의 본문 부분입니다. sapUiBody 클래스는 SAPUI5의 기본 스타일을 적용합니다. -->
+        <div data-sap-ui-component data-name="ui5.walkthrough" data-id="container" data-settings='{"id" : "walkthrough"}'></div> 
+        <!-- UI5 컴포넌트를 로드할 자리입니다. data-sap-ui-component 속성으로 SAPUI5의 컴포넌트 로딩을 지정합니다.
+             data-name은 컴포넌트의 이름을 지정하며, data-id는 컴포넌트의 ID를 설정합니다.
+             data-settings는 JSON 형식으로 컴포넌트의 설정을 지정합니다. -->
+    </body> 
 </html>
+
+<!-- 주석의 의미:
+<!DOCTYPE html>: HTML5 문서임을 브라우저에 알리는 선언입니다. 문서의 표준 모드를 설정합니다.
+<html>: HTML 문서의 루트 요소입니다.
+<head>: 문서의 메타정보를 포함하는 요소입니다. 문서의 제목, 문자 인코딩, 스타일시트 및 스크립트 등을 정의합니다.
+<meta charset="utf-8">: 문서의 문자 인코딩을 UTF-8로 설정하여 다국어 문자가 제대로 표시되도록 합니다.
+<title>UI5 Walkthrough</title>: 브라우저의 탭 또는 제목 표시줄에 표시될 문서의 제목을 정의합니다.
+<script ...>: 외부 JavaScript 파일을 포함하거나 설정을 정의합니다.
+id="sap-ui-bootstrap": 이 스크립트 태그에 대한 식별자입니다.
+src="resources/sap-ui-core.js": 로드할 JavaScript 파일의 경로입니다. SAPUI5의 핵심 라이브러리를 포함합니다.
+data-sap-ui-theme="sap_horizon": SAPUI5 테마를 설정합니다. 여기서는 sap_horizon 테마가 사용됩니다.
+data-sap-ui-libs="sap.m": 로드할 SAPUI5 라이브러리를 지정합니다. 여기서는 sap.m 라이브러리가 포함됩니다.
+data-sap-ui-compat-version="edge": SAPUI5의 호환성 버전을 설정합니다. 최신 버전의 기능을 사용하도록 설정합니다.
+data-sap-ui-async="true": 비동기 모드에서 SAPUI5를 로드합니다.
+data-sap-ui-on-init="module:sap/ui/core/ComponentSupport": SAPUI5 컴포넌트 지원 모듈을 초기화합니다.
+data-sap-ui-resource-roots='{"ui5.walkthrough": "./"}': SAPUI5 리소스의 루트 경로를 설정합니다. 여기서는 ui5.walkthrough 네임스페이스의 리소스가 현재 디렉토리에 위치한다고 지정합니다.
+<body class="sapUiBody" id="content">: 문서의 본문을 정의합니다. sapUiBody 클래스는 SAPUI5의 기본 스타일을 적용합니다.
+<div data-sap-ui-component data-name="ui5.walkthrough" data-id="container" data-settings='{"id" : "walkthrough"}'></div>: SAPUI5 컴포넌트를 로드할 자리입니다. data-sap-ui-component 속성은 이 div가 SAPUI5 컴포넌트를 호스트하도록 지정합니다.
+data-name="ui5.walkthrough": 로드할 SAPUI5 컴포넌트의 이름을 지정합니다.
+data-id="container": 컴포넌트의 ID를 지정합니다.
+data-settings='{"id" : "walkthrough"}': 컴포넌트의 추가 설정을 JSON 형식으로 제공합니다.
+이 HTML 문서는 SAPUI5 애플리케이션의 기본 구조를 설정하며, SAPUI5의 핵심 스크립트를 로드하고, 애플리케이션의 컴포넌트를 포함할 HTML 요소를 정의합니다. -->
+
+
+<!-- Index.html
+
+역할: 애플리케이션의 진입점으로, SAPUI5 라이브러리를 로드하고 초기화하는 역할을 합니다.
+
+구성 요소:
+sap-ui-bootstrap: SAPUI5를 부트스트랩(초기화)하고 필요한 라이브러리와 테마를 로드합니다.
+data-sap-ui-resource-roots: 애플리케이션의 네임스페이스와 경로를 설정합니다.
+ComponentContainer: SAPUI5 컴포넌트를 로드하고 화면에 표시합니다. 
+
+-->

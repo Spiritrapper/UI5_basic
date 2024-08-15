@@ -1,22 +1,129 @@
 <mvc:View
-	controllerName="ui5.walkthrough.controller.Detail"
+    controllerName="ui5.walkthrough.controller.Dtail"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:wt="ui5.walkthrough.control"
->
+	>
 	<Page
 		title="{i18n>detailPageTitle}"
-		showNavButton="true"
-		navButtonPress=".onNavBack"
-	>
-		<ObjectHeader
-			intro="{invoice>ShipperName}"
-			title="{invoice>ProductName}"
-		/>
-		<wt:ProductRating
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+		<ObjectHeader 
+			responsive="true"
+			fullScreenOptimized="true"
+			number="{
+				parts: [
+					'invoice>ExtendedPrice',
+					'view>/currency'
+				],
+				type: 'sap.ui.model.type.Currency',
+				formatOptions: {
+					showMeasure: false
+				}
+			}"
+			numberUnit="{view>/currency}"
+            intro="{invoice>ShipperName}"
+            title="{invoice>ProductName}">
+			<attributes>
+				<ObjectAttribute
+					title="{i18n>quantityTitle}"
+					text="{invoice>Quantity}"
+				/>
+				<ObjectAttribute
+					title="{i18n>dateTitle}"
+					text="{ 
+						path: 'invoice>ShippedDate',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							style: 'long',
+							source: {
+								parttern: 'yyyy-MM-ddTHH:mm:ss'
+							}
+						}
+					 }"
+				/>
+			</attributes>
+		</ObjectHeader>
+		<wt:ProdeuctRating
 			id="rating"
 			class="sapUiSmallMarginBeginEnd"
 			change=".onRatingChange"
 		/>
 	</Page>
 </mvc:View>
+
+
+
+<!-- <mvc:View
+    controllerName="ui5.walkthrough.controller.Dtail" <!-- 이 뷰와 연결된 컨트롤러의 이름입니다. (오타: 'Dtail' → 'Detail') -->
+    xmlns="sap.m" <!-- SAPUI5의 'sap.m' 네임스페이스를 사용합니다. -->
+    xmlns:mvc="sap.ui.core.mvc" <!-- SAPUI5의 MVC 관련 네임스페이스를 사용합니다. -->
+    xmlns:wt="ui5.walkthrough.control" <!-- 사용자 정의 컨트롤을 포함하기 위해 'wt' 네임스페이스를 정의합니다. -->
+>
+    <!-- Page 컨트롤을 사용하여 뷰의 페이지를 정의합니다. -->
+    <Page
+        title="{i18n>detailPageTitle}" <!-- 페이지의 제목을 'i18n' 모델에서 가져오는 'detailPageTitle'로 설정합니다. -->
+        showNavButton="true" <!-- 내비게이션 버튼을 페이지 상단에 표시합니다. -->
+        navButtonPress=".onNavBack"> <!-- 내비게이션 버튼 클릭 시 호출될 핸들러 메서드를 'onNavBack'으로 설정합니다. -->
+        
+        <!-- ObjectHeader 컨트롤은 페이지의 헤더 부분에 대한 정보를 표시합니다. -->
+        <ObjectHeader 
+            responsive="true" <!-- 헤더가 다양한 화면 크기에 적응하도록 설정합니다. -->
+            fullScreenOptimized="true" <!-- 헤더를 전체 화면 모드에 최적화합니다. -->
+            number="{  <!-- 'number' 속성에 대한 데이터 바인딩을 설정합니다. -->
+                parts: [
+                    'invoice>ExtendedPrice', <!-- 'invoice' 모델의 'ExtendedPrice' 속성을 바인딩합니다. -->
+                    'view>/currency' <!-- 'view' 모델의 'currency' 속성을 바인딩합니다. -->
+                ],
+                type: 'sap.ui.model.type.Currency', <!-- 데이터 형식을 'Currency'로 설정합니다. -->
+                formatOptions: {
+                    showMeasure: false <!-- 측정 단위를 표시하지 않습니다. -->
+                }
+            }"
+            numberUnit="{view>/currency}" <!-- 'view' 모델의 'currency' 속성을 'numberUnit'에 바인딩합니다. -->
+            intro="{invoice>ShipperName}" <!-- 'invoice' 모델의 'ShipperName' 속성을 'intro'에 바인딩합니다. -->
+            title="{invoice>ProductName}"> <!-- 'invoice' 모델의 'ProductName' 속성을 'title'에 바인딩합니다. -->
+            
+            <!-- ObjectHeader 내에 추가적인 정보를 표시하는 ObjectAttribute 컨트롤들을 정의합니다. -->
+            <attributes>
+                <ObjectAttribute
+                    title="{i18n>quantityTitle}" <!-- 'i18n' 모델의 'quantityTitle'을 'title'로 설정합니다. -->
+                    text="{invoice>Quantity}" <!-- 'invoice' 모델의 'Quantity' 속성을 'text'로 설정합니다. -->
+                />
+                <ObjectAttribute
+                    title="{i18n>dateTitle}" <!-- 'i18n' 모델의 'dateTitle'을 'title'로 설정합니다. -->
+                    text="{ <!-- 'text' 속성에 대한 데이터 바인딩을 설정합니다. -->
+                        path: 'invoice>ShippedDate', <!-- 'invoice' 모델의 'ShippedDate' 속성을 바인딩합니다. -->
+                        type: 'sap.ui.model.type.Date', <!-- 데이터 형식을 'Date'로 설정합니다. -->
+                        formatOptions: {
+                            style: 'long', <!-- 날짜 형식을 'long'으로 설정하여 긴 형태로 표시합니다. -->
+                            source: {
+                                pattern: 'yyyy-MM-ddTHH:mm:ss' <!-- 날짜의 입력 패턴을 'yyyy-MM-ddTHH:mm:ss'로 설정합니다. -->
+                            }
+                        }
+                    }"
+                />
+            </attributes>
+        </ObjectHeader>
+
+        <!-- 사용자 정의 ProductRating 컨트롤을 페이지에 추가합니다. -->
+        <wt:ProdeuctRating
+            id="rating" <!-- 이 컨트롤의 ID를 'rating'으로 설정합니다. -->
+            class="sapUiSmallMarginBeginEnd" <!-- SAPUI5의 표준 CSS 클래스를 사용하여 좌우에 작은 여백을 추가합니다. -->
+            change=".onRatingChange" <!-- 사용자 평가 변경 시 호출될 핸들러 메서드를 'onRatingChange'로 설정합니다. -->
+        />
+    </Page>
+</mvc:View> -->
+
+주석의 의미:
+<mvc:View>: 이 태그는 SAPUI5의 MVC 아키텍처에서 뷰를 정의합니다. controllerName 속성은 이 뷰와 연결된 컨트롤러의 이름을 지정합니다. xmlns 속성은 XML 네임스페이스를 설정하여 다양한 SAPUI5 컨트롤과 기능을 사용할 수 있게 합니다.
+
+<Page>: 페이지 컨트롤은 사용자 인터페이스의 페이지를 정의합니다. 이 페이지는 제목, 내비게이션 버튼, 내용 등을 포함할 수 있습니다.
+
+<ObjectHeader>: 객체의 헤더 정보를 표시하는 컨트롤입니다. 주로 제목, 부제목, 숫자 값 등을 보여줍니다.
+
+<ObjectAttribute>: ObjectHeader 내의 속성 정보를 표시하는 컨트롤로, 제목과 텍스트를 포함합니다.
+
+<wt:ProdeuctRating>: 사용자 정의 컨트롤 ProdeuctRating을 페이지에 추가합니다. ID와 클래스는 스타일을 정의하고, change 속성은 평가가 변경될 때 호출될 핸들러 메서드를 설정합니다. (오타: 'ProdeuctRating' → 'ProductRating')
+
+이 뷰는 제품 세부 정보를 표시하고, 사용자로부터 평가를 받을 수 있는 기능을 포함하고 있습니다.

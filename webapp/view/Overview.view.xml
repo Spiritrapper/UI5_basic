@@ -1,13 +1,48 @@
 <mvc:View
-	controllerName="ui5.walkthrough.controller.App"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true"
+    controllerName="ui5.walkthrough.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
 >
-	<Page title="{i18n>homePageTitle}">
-		<content>
-			<mvc:XMLView viewName="ui5.walkthrough.view.HelloPanel" />
-			<mvc:XMLView viewName="ui5.walkthrough.view.InvoiceList" />
-		</content>
-	</Page>
+    <Page title="{i18n>homePageTitle}">
+        <content>
+            <mvc:XMLView viewName="ui5.walkthrough.view.HelloPanel"/>
+            <mvc:XMLView viewName="ui5.walkthrough.view.InvoiceList"/>
+        </content>
+    </Page>
+
 </mvc:View>
+
+<!-- <mvc:View
+    controllerName="ui5.walkthrough.controller.App" <!-- 이 View와 연결된 컨트롤러의 이름을 정의합니다. -->
+    xmlns="sap.m" <!-- SAPUI5의 모바일 컨트롤을 사용할 수 있도록 설정합니다. -->
+    xmlns:mvc="sap.ui.core.mvc" <!-- MVC의 기본 컨트롤 및 기능을 사용할 수 있도록 설정합니다. -->
+    displayBlock="true"> <!-- 이 속성은 View가 블록 레벨로 표시되도록 설정합니다. -->
+
+    <!-- Page 컨트롤은 UI의 전체 페이지를 정의합니다. -->
+    <Page title="{i18n>homePageTitle}"> <!-- 페이지의 제목을 'i18n' 모델에서 'homePageTitle' 속성으로 설정합니다. -->
+        <content>
+            <!-- XMLView 컨트롤은 다른 XML View를 포함할 수 있게 합니다. -->
+            <mvc:XMLView viewName="ui5.walkthrough.view.HelloPanel"/> <!-- 'HelloPanel'이라는 이름의 XML View를 포함합니다. -->
+            <mvc:XMLView viewName="ui5.walkthrough.view.InvoiceList"/> <!-- 'InvoiceList'라는 이름의 XML View를 포함합니다. -->
+        </content>
+    </Page>
+
+</mvc:View> -->
+
+
+주석의 의미:
+<mvc:View>: SAPUI5의 MVC 구조에서 사용되는 기본 뷰 컨트롤로, 이 뷰의 컨트롤러를 controllerName 속성으로 지정합니다.
+
+controllerName: 이 View와 연결된 컨트롤러의 이름을 정의합니다. 컨트롤러는 이 View에 대한 로직을 처리합니다.
+xmlns: XML 네임스페이스를 정의하여 SAPUI5의 컨트롤 및 기능을 사용할 수 있게 합니다.
+xmlns:mvc: MVC 관련 기능을 위한 네임스페이스를 정의합니다.
+displayBlock="true": View가 블록 레벨 요소로 표시되도록 설정합니다. 이를 통해 View가 페이지 전체를 차지하게 됩니다.
+<Page>: SAPUI5의 Page 컨트롤은 앱의 페이지를 구성하는 데 사용됩니다.
+
+title: 페이지의 제목을 i18n 모델의 homePageTitle 속성으로 설정합니다. i18n 모델은 다국어 지원을 위한 리소스 번들을 제공합니다.
+<content>: Page 내에 포함될 콘텐츠를 정의합니다.
+
+<mvc:XMLView>: 다른 XML View를 포함하는 컨트롤로, 재사용 가능한 UI 컴포넌트를 로드하는 데 사용됩니다.
+viewName: 포함할 XML View의 이름을 정의합니다. HelloPanel과 InvoiceList는 별도의 XML View를 나타냅니다.
+이 XML View 구조는 단일 페이지 내에 여러 UI 컴포넌트를 포함하여 복합적인 사용자 인터페이스를 구성하는 방법을 보여줍니다.
